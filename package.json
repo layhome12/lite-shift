@@ -1,0 +1,28 @@
+{
+  "name": "lite-shift",
+  "version": "1.0.0",
+  "description": "TypeScript Express MVC",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon ./dist/index.js",
+    "ts": "rimraf dist/ && tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/layhome12/lite-shift.git"
+  },
+  "keywords": [
+    "lite-shift"
+  ],
+  "author": "layhome12",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/layhome12/lite-shift/issues"
+  },
+  "homepage": "https://github.com/layhome12/lite-shift#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "rimraf": "^4.1.2",
+    "typescript": "^4.9.4"
+  }
+}
