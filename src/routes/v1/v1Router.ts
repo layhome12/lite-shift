@@ -1,14 +1,9 @@
-import { Request, Response } from "express";
+import homeController from "../../controllers/v1/homeController";
 import baseRouter from "../baseRouter";
 
 class v1Router extends baseRouter {
   public routes(): void {
-    this.router.get("/", (req: Request, res: Response) => {
-      res.json({
-        statusCode: 200,
-        message: "End Point API v1",
-      });
-    });
+    this.router.get("/", homeController.index);
   }
 }
 
