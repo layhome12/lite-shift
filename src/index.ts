@@ -4,11 +4,11 @@ import morgan from "morgan";
 import compression from "compression";
 import helmet from "helmet";
 import cors from "cors";
+import config from "./config/config";
 import v1Router from "./routes/v1/v1Router";
 
 class App {
   public app: Application;
-  public static port: number = 80;
 
   constructor() {
     this.app = express();
@@ -17,7 +17,6 @@ class App {
   }
 
   protected plugins(): void {
-    this.app.set("json spaces", 4);
     this.app.use(bodyParser.json());
     this.app.use(morgan("dev"));
     this.app.use(compression());
@@ -44,6 +43,6 @@ class App {
 }
 
 const app = new App().app;
-app.listen(App.port, () => {
-  console.log("Server running at http://localhost:" + App.port);
+app.listen(config.port(), () => {
+  console.log(`Server running at ${config.baseUrl()}:${config.port()}`);
 });
