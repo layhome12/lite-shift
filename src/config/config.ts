@@ -5,13 +5,13 @@ class config {
     dotenv.config();
   }
   
-  public baseUrl(): String {
+  public baseUrl(): string {
     let baseUrl = process.env.BASE_URL;
     let url = baseUrl?.replace("http://", "").replace("https://", "");
     return url ? url.split(":")[0] : "localhost";
   }
 
-  public port(): String {
+  public port(): string {
     let baseUrl = process.env.BASE_URL;
     let port = baseUrl?.replace("http://", "").replace("https://", "");
     return port ? port.split(":")[1] : "80";

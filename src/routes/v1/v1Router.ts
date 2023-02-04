@@ -1,9 +1,19 @@
-import homeController from "../../controllers/v1/homeController";
+import userController from "../../controllers/v1/userController";
+import userValidation from "../../middlewares/validations/v1/userValidation";
 import baseRouter from "../baseRouter";
 
 class v1Router extends baseRouter {
   public routes(): void {
-    this.router.get("/", homeController.index);
+    // ==> Users
+    this.router.get("/user", userController.index);
+    this.router.get("/user/:id", userController.show);
+    this.router.post("/user", [userValidation.create], userController.store);
+    this.router.put(
+      "/user/:id",
+      [userValidation.update],
+      userController.update
+    );
+    this.router.delete("/user/:id", userController.destroy);
   }
 }
 

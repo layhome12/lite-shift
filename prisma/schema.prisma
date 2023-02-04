@@ -8,11 +8,12 @@ datasource db {
 }
 
 model user {
-  id       Int    @id @default(autoincrement())
-  username String @db.VarChar(50)
-  password String
-  user_nama String @db.VarChar(150)
-  user_img String?
-  created_at DateTime
-  updated_at DateTime
+  id         Int       @id @default(autoincrement())
+  username   String    @db.VarChar(50)
+  password   String
+  user_email String    @db.VarChar(150)
+  user_nama  String    @db.VarChar(150)
+  user_img   String?
+  created_at DateTime? @default(now())
+  updated_at DateTime?
 }

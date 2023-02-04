@@ -1,0 +1,27 @@
+### ==> USERS
+### GET
+GET http://localhost/api/v1/user
+### SHOW
+GET http://localhost/api/v1/user/1
+### STORE
+POST http://localhost/api/v1/user
+Content-Type: application/json
+
+{
+    "username":"layhome12",
+    "password":"@#Password123",
+    "user_email":"layhome12@gmail.com",
+    "user_nama":"Layhome Sesh"
+}
+### UPDATE
+PUT http://localhost/api/v1/user/1
+Content-Type: application/json
+
+{
+    "username":"layhome12",
+    "password":"",
+    "user_email":"layhome12@gmail.com",
+    "user_nama":"Layhome uWu"
+}
+### DELETE
+DELETE http://localhost/api/v1/user/1

@@ -6,6 +6,7 @@ import helmet from "helmet";
 import cors from "cors";
 import config from "./config/config";
 import v1Router from "./routes/v1/v1Router";
+import { cDate, cSystem } from "./libraries/coreSystem";
 
 class App {
   public app: Application;
@@ -26,9 +27,12 @@ class App {
 
   protected routes(): void {
     this.app.get("/", (req: Request, res: Response) => {
-      res.status(200).json({
+      return cSystem.response(res, {
         statusCode: 200,
         message: "Server is running..",
+        data: {
+          dateUtc: cDate.getDateNow(),
+        },
       });
     });
 
