@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { body } from "express-validator";
+import validationInterface from "../../../blueprints/validation";
 import baseValidation from "../baseValidation";
 
-class userValidation extends baseValidation {
+class userValidation extends baseValidation implements validationInterface {
   public async create(
     req: Request,
     res: Response,
