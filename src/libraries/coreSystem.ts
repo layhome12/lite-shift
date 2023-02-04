@@ -1,6 +1,7 @@
 import { Response } from "express";
 import moment from "moment";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 type retriveOnly = {
   statusCode: number;
@@ -35,6 +36,10 @@ class cDate {
   }
 }
 
-class cString {}
+class cString {
+  public static hash(str: string): Promise<string> {
+    return bcrypt.hash(str, 10);
+  }
+}
 
 export { cSystem, cDate, cString };

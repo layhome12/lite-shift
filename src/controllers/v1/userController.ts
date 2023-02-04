@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import controllerInterface from "../../blueprints/controller";
 import userModel from "../../models/userModel";
 import baseController from "../baseController";
-import { cDate, cSystem } from "../../libraries/coreSystem";
+import { cDate, cString, cSystem } from "../../libraries/coreSystem";
 
 class userController extends baseController implements controllerInterface {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -32,13 +32,14 @@ class userController extends baseController implements controllerInterface {
   }
 
   public async store(req: Request, res: Response): Promise<Response> {
+    let hashPass = await cString.hash(req.body.password);
     try {
       await userModel.createData({
         username: req.body.username,
+        password: hashPass,
         user_nama: req.body.user_nama,
         user_email: req.body.user_email,
         user_img: null,
-        password: req.body.password,
         created_at: cDate.getDateNow(),
         updated_at: null,
       });
@@ -67,7 +68,7 @@ class userController extends baseController implements controllerInterface {
 
       if (req.body.password != "")
         Object.assign(data, {
-          password: req.body.password,
+          password: await cString.hash(req.body.password),
         });
 
       await userModel.updateData(data, id);

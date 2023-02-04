@@ -19,6 +19,8 @@ class App {
 
   protected plugins(): void {
     this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use("/public", express.static(config.publicDir()));
     this.app.use(morgan("dev"));
     this.app.use(compression());
     this.app.use(helmet());

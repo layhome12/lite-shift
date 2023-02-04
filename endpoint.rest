@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
     "username":"layhome12",
-    "password":"",
+    "password":"@#Password124",
     "user_email":"layhome12@gmail.com",
     "user_nama":"Layhome uWu"
 }
