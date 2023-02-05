@@ -37,6 +37,15 @@ class cSystem {
     const mediaSize = fs.statSync(file).size;
     const mimeType = mime.lookup(file);
 
+    if (mediaSize <= 0) {
+      return res.status(404).end(
+        JSON.stringify({
+          statusCode: 404,
+          message: "File media not found",
+        })
+      );
+    }
+
     //==> Parse Range
     const chunkSize: number = 2 * (1024 * 1024); // 2MB
     const start: number = Number(range.replace(/\D/g, ""));
