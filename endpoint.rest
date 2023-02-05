@@ -1,10 +1,10 @@
 ### ==> USERS
 ### GET
-GET http://localhost/api/v1/user
+GET http://localhost:8080/api/v1/user
 ### SHOW
-GET http://localhost/api/v1/user/1
+GET http://localhost:8080/api/v1/user/1
 ### STORE
-POST http://localhost/api/v1/user
+POST http://localhost:8080/api/v1/user
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
     "user_nama":"Layhome Sesh"
 }
 ### UPDATE
-PUT http://localhost/api/v1/user/1
+PUT http://localhost:8080/api/v1/user/1
 Content-Type: application/json
 
 {
@@ -24,4 +24,4 @@ Content-Type: application/json
     "user_nama":"Layhome uWu"
 }
 ### DELETE
-DELETE http://localhost/api/v1/user/1
+DELETE http://localhost:8080/api/v1/user/1
