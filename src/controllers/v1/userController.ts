@@ -3,6 +3,8 @@ import controllerInterface from "../../blueprints/controller";
 import userModel from "../../models/userModel";
 import baseController from "../baseController";
 import { cDate, cString, cSystem } from "../../libraries/coreSystem";
+import filesystem from "../../config/filesystem";
+import config from "../../config/config";
 
 class userController extends baseController implements controllerInterface {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -32,6 +34,13 @@ class userController extends baseController implements controllerInterface {
   }
 
   public async store(req: Request, res: Response): Promise<Response> {
+    console.log(req.files);
+
+    return cSystem.response(res, {
+      statusCode: 200,
+      message: "Testing Upload File",
+    });
+
     let hashPass = await cString.hash(req.body.password);
     try {
       await userModel.createData({

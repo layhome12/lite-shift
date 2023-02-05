@@ -18,7 +18,8 @@ class userValidation extends baseValidation implements validationInterface {
       .withMessage("Make sure the password used is strong")
       .run(req);
     await body("user_nama")
-      .matches(/^[a-zA-Z -]*$/)
+      .notEmpty()
+      .matches(/^[a-zA-Z]*$/)
       .withMessage("Make sure the name contains alpha")
       .run(req);
     await body("user_email")
