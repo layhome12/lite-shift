@@ -4,13 +4,13 @@ import fileSystem from "../../../config/filesystem";
 
 class userFileUploads {
   public uploadImage(req: Request, res: Response, next: NextFunction) {
-    let uploads = new fileSystem("file", {
+    let uploads = new fileSystem("user_img", {
       dest: config.publicDir("/images"),
-      mimes: ["image/jpg", "image/jpeg"],
-      limit: 1 * 1024,
+      mimes: ["image/jpg", "image/jpeg", "image/png"],
+      limit: 1 * 512,
     });
 
-    uploads.multipleUpload(req, res, next);
+    uploads.singleUpload(req, res, next);
   }
 }
 

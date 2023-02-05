@@ -15,7 +15,7 @@ class v1Router extends baseRouter {
     );
     this.router.put(
       "/user/:id",
-      [userValidation.update],
+      [userFileUploads.uploadImage, userValidation.update],
       userController.update
     );
     this.router.delete("/user/:id", userController.destroy);
