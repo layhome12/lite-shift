@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import mime from "mime-types";
 import fs from "fs";
+import jwt from "jsonwebtoken";
 
 type retriveOnly = {
   statusCode: number;
@@ -14,6 +15,11 @@ type retriveData = {
   statusCode: number;
   message: string;
   data: any;
+};
+
+type initCreateToken = {
+  secret: string;
+  expired: number | string;
 };
 
 class cSystem {
@@ -68,6 +74,7 @@ class cDate {
   constructor() {
     dotenv.config();
   }
+
   public static getDateNow() {
     let timeZone: string = process.env.TIMEZONE_OFFSET
       ? process.env.TIMEZONE_OFFSET
@@ -83,4 +90,24 @@ class cString {
   }
 }
 
-export { cSystem, cDate, cString };
+class cAuth {
+  public static createToken(data: object, init: initCreateToken): string {
+    let token: string = jwt.sign(data, init.secret, {
+      expiresIn: init.expired,
+    });
+
+    return token;
+  }
+
+  public static verifyToken(token: string, secret: string): string | any {
+    try {
+      let verify = jwt.verify(token, secret);
+      if (!verify) return false;
+      return verify;
+    } catch (error) {
+      return false;
+    }
+  }
+}
+
+export { cSystem, cDate, cString, cAuth };
