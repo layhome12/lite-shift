@@ -1,3 +1,4 @@
+import mediaController from "../../controllers/v1/mediaController";
 import userController from "../../controllers/v1/userController";
 import userFileUploads from "../../middlewares/fileuploads/v1/userFileUploads";
 import userValidation from "../../middlewares/validations/v1/userValidation";
@@ -19,6 +20,9 @@ class v1Router extends baseRouter {
       userController.update
     );
     this.router.delete("/user/:id", userController.destroy);
+
+    // ==> Media Stream
+    this.router.get("/stream/movie/:id", mediaController.index);
   }
 }
 
