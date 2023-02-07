@@ -1,0 +1,47 @@
+#--------------------------------
+# ENVIROMENT
+#--------------------------------
+
+NODE_ENV = development
+
+#--------------------------------
+# BASE URL
+#--------------------------------
+
+BASE_URL = http://localhost:8080
+
+#--------------------------------
+# DATABASE
+#--------------------------------
+
+DATABASE_URL = mysql://root:@localhost:3306/my-db
+
+#--------------------------------
+# TIMEZONE OFFSET
+#--------------------------------
+
+TIMEZONE_OFFSET = +0700
+
+#--------------------------------
+# DIRECTORY
+#--------------------------------
+
+SAFE_DIR = private
+PUBLIC_DIR = public
+
+#--------------------------------
+# MAILER
+#--------------------------------
+
+MAILER_NAME =
+MAILER_HOST =
+MAILER_PORT =
+MAILER_USER =
+MAILER_PASS =
+
+#--------------------------------
+# SECRET KEY
+#--------------------------------
+
+JWT_SECRET_KEY =
+AES_SECRET_KEY =
