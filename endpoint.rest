@@ -1,20 +1,40 @@
+### ==> AUTH
+### AUTHENTICATION
+POST http://localhost:8080/api/v1/auth
+Content-Type: application/json
+
+{
+    "username":"layhome12",
+    "password":"@#Password123"
+}
+
+### REFRESH TOKEN
+GET http://localhost:8080/api/v1/refresh-token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1Nzg2MDIwLCJleHAiOjE2NzgzNzgwMjB9.ihNp0vDs_gT5pOhhgsqrrPFtu3Iq_BYvo7QX2PC5XxA
+
 ### ==> USERS
 ### GET
 GET http://localhost:8080/api/v1/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1Nzg2MjgwLCJleHAiOjE2NzU4NzI2ODB9.zoQYVzSPnb_DdcqVUIIiBkuAnWXHAzkEVIJbMTMhYJk
+
 ### SHOW
 GET http://localhost:8080/api/v1/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1Nzg1MjE4LCJleHAiOjE2NzU4NzE2MTh9.OSFdezp4MdVbuT-AB2ThZzVbxhay4lz7kgGH6DB1Uko
+
 ### STORE
 POST http://localhost:8080/api/v1/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1Nzg1MjE4LCJleHAiOjE2NzU4NzE2MTh9.OSFdezp4MdVbuT-AB2ThZzVbxhay4lz7kgGH6DB1Uko
 Content-Type: application/json
 
 {
     "username":"layhome12",
     "password":"@#Password123",
     "user_email":"layhome12@gmail.com",
-    "user_nama":"Layhome Sesh"
+    "user_nama":"Layhome"
 }
 ### UPDATE
 PUT http://localhost:8080/api/v1/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1Nzg1MjE4LCJleHAiOjE2NzU4NzE2MTh9.OSFdezp4MdVbuT-AB2ThZzVbxhay4lz7kgGH6DB1Uko
 Content-Type: application/json
 
 {
@@ -25,3 +45,4 @@ Content-Type: application/json
 }
 ### DELETE
 DELETE http://localhost:8080/api/v1/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc1Nzg1MjE4LCJleHAiOjE2NzU4NzE2MTh9.OSFdezp4MdVbuT-AB2ThZzVbxhay4lz7kgGH6DB1Uko

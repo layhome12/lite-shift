@@ -18,7 +18,7 @@ type retriveData = {
 };
 
 type initCreateToken = {
-  secret: string;
+  secret: string | undefined;
   expired: number | string;
 };
 
@@ -92,21 +92,28 @@ class cString {
 
 class cAuth {
   public static createToken(data: object, init: initCreateToken): string {
-    let token: string = jwt.sign(data, init.secret, {
+    let token: string = jwt.sign(data, init.secret ? init.secret : "secret", {
       expiresIn: init.expired,
     });
 
     return token;
   }
 
-  public static verifyToken(token: string, secret: string): string | any {
+  public static verifyToken(
+    token: string,
+    secret: string | undefined
+  ): string | any {
     try {
-      let verify = jwt.verify(token, secret);
+      let verify = jwt.verify(token, secret ? secret : "secret");
       if (!verify) return false;
       return verify;
     } catch (error) {
       return false;
     }
+  }
+
+  public static verifyHash(str: string, hash: string): Promise<boolean> {
+    return bcrypt.compare(str, hash);
   }
 }
 

@@ -57,6 +57,19 @@ class userModel extends baseModel implements modelInterface {
       },
     });
   }
+
+  public async getUserAuth(username: string): Promise<any> {
+    return this.db.user.findFirst({
+      select: {
+        id: true,
+        username: true,
+        password: true,
+      },
+      where: {
+        username,
+      },
+    });
+  }
 }
 
 export default new userModel();
