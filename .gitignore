@@ -1,3 +1,4 @@
+# Ignore commit
 node_modules
 dist
 public/*
