@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import mime from "mime-types";
 import fs from "fs";
 import jwt from "jsonwebtoken";
+import crypto from "crypto-js";
 
 type retriveOnly = {
   statusCode: number;
@@ -87,6 +88,20 @@ class cDate {
 class cString {
   public static hash(str: string): Promise<string> {
     return bcrypt.hash(str, 10);
+  }
+
+  public static strEncode(str: string): string | any {
+    let key = process.env.AES_SECRET_KEY
+      ? process.env.AES_SECRET_KEY
+      : "secret";
+    return crypto.AES.encrypt(str, key).toString();
+  }
+
+  public static strDecode(str: string): string {
+    let key = process.env.AES_SECRET_KEY
+      ? process.env.AES_SECRET_KEY
+      : "secret";
+    return crypto.AES.decrypt(str, key).toString(crypto.enc.Utf8);
   }
 }
 
