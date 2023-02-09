@@ -10,7 +10,7 @@ TypeScript Express MVC for REST API. Suitable for use as the basis of a typescri
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/layhome12/lite-shift.git
 ```
 
 Go to the project directory
