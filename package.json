@@ -4,7 +4,7 @@
   "description": "TypeScript Express MVC",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon ./dist/src/index.js",
+    "serve": "nodemon ./dist/index.js",
     "ts": "rimraf dist/ && tsc -w"
   },
   "repository": {
