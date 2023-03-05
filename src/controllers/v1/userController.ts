@@ -57,8 +57,8 @@ class userController extends baseController implements controllerInterface {
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    let id: number = parseInt(req.params.id);
     try {
+      const id: number = parseInt(req.params.id);
       let data: object = {
         username: req.body.username,
         user_nama: req.body.user_nama,
@@ -92,8 +92,8 @@ class userController extends baseController implements controllerInterface {
   }
 
   public async destroy(req: Request, res: Response): Promise<Response> {
-    let id: number = parseInt(req.params.id);
     try {
+      const id: number = parseInt(req.params.id);
       await userModel.destroyData(id);
     } catch (error) {
       return cSystem.response(res, {
