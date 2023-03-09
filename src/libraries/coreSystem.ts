@@ -6,6 +6,7 @@ import mime from "mime-types";
 import fs from "fs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto-js";
+import { Prisma, PrismaClient } from "@prisma/client";
 
 type retriveOnly = {
   statusCode: number;
@@ -21,6 +22,11 @@ type retriveData = {
 type initCreateToken = {
   secret: string | undefined;
   expired: number | string;
+};
+
+type cInfiniteInit = {
+  db: Prisma.ModelName;
+  args: object;
 };
 
 class cSystem {
@@ -132,4 +138,20 @@ class cAuth {
   }
 }
 
-export { cSystem, cDate, cString, cAuth };
+class cInfinite {
+  private dbSelector: Prisma.ModelName;
+  private modelSelector: object;
+
+  constructor(init: cInfiniteInit) {
+    this.dbSelector = init.db;
+    this.modelSelector = init.args;
+  }
+
+  public renderData = async (): Promise<any> => {
+    const dbConnect = new PrismaClient();
+    const argsMany = this.modelSelector;
+    return await dbConnect[this.dbSelector].findMany(argsMany);
+  };
+}
+
+export { cSystem, cDate, cString, cAuth, cInfinite };
