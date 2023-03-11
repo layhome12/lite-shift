@@ -24,11 +24,6 @@ type initCreateToken = {
   expired: number | string;
 };
 
-type cInfiniteInit = {
-  db: Prisma.ModelName;
-  args: object;
-};
-
 class cSystem {
   public static response(
     res: Response,
@@ -138,20 +133,4 @@ class cAuth {
   }
 }
 
-class cInfinite {
-  private dbSelector: Prisma.ModelName;
-  private modelSelector: object;
-
-  constructor(init: cInfiniteInit) {
-    this.dbSelector = init.db;
-    this.modelSelector = init.args;
-  }
-
-  public renderData = async (): Promise<any> => {
-    const dbConnect = new PrismaClient();
-    const argsMany = this.modelSelector;
-    return await dbConnect[this.dbSelector].findMany(argsMany);
-  };
-}
-
-export { cSystem, cDate, cString, cAuth, cInfinite };
+export { cSystem, cDate, cString, cAuth };
