@@ -134,11 +134,11 @@ class prismaInfinite {
     const whereInput: object | any = this.whereArgs;
     const isArray: boolean = Array.isArray(whereInput?.OR);
     const seacrhArgs = this.seacrhArgs ? this.seacrhArgs : [];
-    const whereOrArgs = whereInput ? whereInput.OR : {};
+    const whereOrArgs = whereInput ? whereInput.OR : [];
 
     // Search Compile
     seacrhArgs.forEach((val: string) => {
-      if (isArray) {
+      if (isArray || !whereInput) {
         // Is Array
         whereOrArgs.push({
           [val]: {
