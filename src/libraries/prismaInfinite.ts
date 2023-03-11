@@ -52,9 +52,11 @@ class prismaInfinite {
   public renderData = async (): Promise<outputData> => {
     const dbConnect = new PrismaClient();
     const argsMany = this.compileArgs();
+    // @ts-ignore
     const resultData: Array<any> = await dbConnect[this.dbSelector].findMany(
       argsMany
     );
+    // @ts-ignore
     const totalData: number = await dbConnect[this.dbSelector].count({
       where: this.whereArgs,
     });
