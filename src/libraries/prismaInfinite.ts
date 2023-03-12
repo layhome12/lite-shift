@@ -132,13 +132,13 @@ class prismaInfinite {
   private searchCompile = (): void => {
     const req: Request = this.reqHTTP;
     const whereInput: object | any = this.whereArgs;
-    const isArray: boolean = Array.isArray(whereInput?.OR);
     const seacrhArgs = this.seacrhArgs ? this.seacrhArgs : [];
-    const whereOrArgs = whereInput ? whereInput.OR : [];
+    const whereOrArgs = !whereInput ? [] : whereInput.OR ? whereInput.OR : [];
+    const isArray: boolean = Array.isArray(whereOrArgs);
 
     // Search Compile
     seacrhArgs.forEach((val: string) => {
-      if (isArray || !whereInput) {
+      if (isArray) {
         // Is Array
         whereOrArgs.push({
           [val]: {
@@ -171,13 +171,14 @@ class prismaInfinite {
 
   private paginateCompile = (): void => {
     const req: Request = this.reqHTTP;
+    
+    // Pagination Compile
     const page: number = parseInt(req.body.page) ? parseInt(req.body.page) : 1;
     const length: number = parseInt(req.body.length)
       ? parseInt(req.body.length)
       : 10;
     const offset: number = (page - 1) * length;
 
-    // Pagination Compile
     this.paginateArgs = {
       page: page,
       take: length,
