@@ -1,8 +1,8 @@
+import { DataSource } from "typeorm";
 import database from "../config/database";
-import { PrismaClient } from "@prisma/client";
 
 abstract class baseModel {
-  protected db: PrismaClient;
+  protected db: DataSource;
 
   constructor() {
     this.db = database;

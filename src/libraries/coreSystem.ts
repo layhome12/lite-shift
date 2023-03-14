@@ -6,7 +6,6 @@ import mime from "mime-types";
 import fs from "fs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto-js";
-import { Prisma, PrismaClient } from "@prisma/client";
 
 type retriveOnly = {
   statusCode: number;

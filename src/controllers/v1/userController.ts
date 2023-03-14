@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import controllerInterface from "../../blueprints/controller";
-import userModel from "../../models/userModel";
 import baseController from "../baseController";
 import { cDate, cString, cSystem } from "../../libraries/coreSystem";
+import userModel from "../../models/userModel";
+import User from "../../models/entities/User";
 
 class userController extends baseController implements controllerInterface {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -15,7 +16,7 @@ class userController extends baseController implements controllerInterface {
   }
 
   public async show(req: Request, res: Response): Promise<Response> {
-    let id: number = parseInt(req.params.id);
+    let id: number = parseInt(req.params.id) ? parseInt(req.params.id) : 0;
     let data = await userModel.getData(id);
 
     if (!data)
@@ -33,13 +34,14 @@ class userController extends baseController implements controllerInterface {
 
   public async store(req: Request, res: Response): Promise<Response> {
     let hashPass = await cString.hash(req.body.password);
+    const fileImg: string | undefined = req.file?.filename;
     try {
-      await userModel.createData({
+      await userModel.createData(<User>{
         username: req.body.username,
         password: hashPass,
         user_nama: req.body.user_nama,
         user_email: req.body.user_email,
-        user_img: req.file?.filename,
+        user_img: fileImg,
         created_at: cDate.getDateNow(),
         updated_at: null,
       });
@@ -77,7 +79,7 @@ class userController extends baseController implements controllerInterface {
         });
       }
 
-      await userModel.updateData(data, id);
+      await userModel.updateData(<User>data, id);
     } catch (error) {
       return cSystem.response(res, {
         statusCode: 500,

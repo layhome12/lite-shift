@@ -1,13 +1,15 @@
-import { Prisma } from "@prisma/client";
 import modelInterface from "../blueprints/model";
 import baseModel from "./baseModel";
+import User from "./entities/User";
 
 class userModel extends baseModel implements modelInterface {
   public async getResult(): Promise<any> {
-    return await this.db.user.findMany({
+    return await this.db.getRepository(User).find({
       select: {
         id: true,
         username: true,
+        password: true,
+        user_email: true,
         user_nama: true,
         user_img: true,
         created_at: true,
@@ -17,54 +19,27 @@ class userModel extends baseModel implements modelInterface {
   }
 
   public async getData(id: number): Promise<any> {
-    return await this.db.user.findUnique({
+    return await this.db.getRepository(User).findOne({
       where: {
         id,
-      },
-      select: {
-        id: true,
-        username: true,
-        user_nama: true,
-        user_img: true,
-        created_at: true,
-        updated_at: true,
       },
     });
   }
 
-  public async createData(data: Prisma.userCreateInput): Promise<any> {
-    return this.db.user.create({
-      data,
-    });
+  public async createData(data: User): Promise<any> {
+    return await this.db.getRepository(User).save(data);
   }
 
-  public async updateData(
-    data: Prisma.userUpdateInput,
-    id: number
-  ): Promise<any> {
-    return this.db.user.update({
-      where: {
-        id,
-      },
-      data,
-    });
+  public async updateData(data: User, id: number): Promise<any> {
+    return await this.db.getRepository(User).update(id, data);
   }
 
   public async destroyData(id: number): Promise<any> {
-    return this.db.user.delete({
-      where: {
-        id,
-      },
-    });
+    return await this.db.getRepository(User).delete(id);
   }
 
   public async getUserAuth(username: string): Promise<any> {
-    return this.db.user.findFirst({
-      select: {
-        id: true,
-        username: true,
-        password: true,
-      },
+    return this.db.getRepository(User).findOne({
       where: {
         username,
       },

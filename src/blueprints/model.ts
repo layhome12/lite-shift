@@ -1,5 +1,3 @@
-import { Prisma } from "@prisma/client";
-
 interface modelInterface {
   getResult(): Promise<any>;
   getData(id: number): Promise<any>;
