@@ -1,3 +1,4 @@
+import debugController from "../../controllers/debugController";
 import authController from "../../controllers/v1/authController";
 import mediaController from "../../controllers/v1/mediaController";
 import userController from "../../controllers/v1/userController";
@@ -50,6 +51,9 @@ class v1Router extends baseRouter {
 
     // ==> Media Stream
     this.router.get("/stream/movie/:id", mediaController.index);
+
+    // ==> Debug
+    this.router.get("/debug", debugController.index);
   }
 }
 

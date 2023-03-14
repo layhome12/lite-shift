@@ -1,26 +1,28 @@
 import "reflect-metadata";
+import dotenv from "dotenv";
 import { DataSource } from "typeorm";
 import User from "../models/entities/User";
 
+dotenv.config();
+const dbUrl: string = process.env.DATABASE_URL ? process.env.DATABASE_URL : "";
+
 const dbConfig: DataSource = new DataSource({
   type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "root",
-  password: "",
-  database: "lite_shift",
+  url: dbUrl,
   entities: [User],
-  synchronize: true,
+  synchronize: false,
   logging: false,
 });
 
-dbConfig
-  .initialize()
-  .then(() => {
-    console.log("DB connected sucessful");
-  })
-  .catch((err: Error) => {
-    console.log("DB not connecting error", err);
-  });
+if (dbUrl != "") {
+  dbConfig
+    .initialize()
+    .then(() => {
+      console.log("DB connected successful");
+    })
+    .catch((err: Error) => {
+      console.log("DB connecting error", err);
+    });
+}
 
 export default dbConfig;
