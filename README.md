@@ -4,7 +4,7 @@
 TypeScript Express MVC for REST API. Suitable for use as the basis of a typescript-based application. For more info open the documentation at [this link](https://lite-shift.layhomedev.site).
 
 > **Warning**
-ORM was migrated to TypeORM because when using Prisma it was deployed on shared hosting not supported
+> ORM was migrated to TypeORM because when using Prisma it was deployed on shared hosting not supported
 
 ## Installation
 
