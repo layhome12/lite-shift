@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "nodemon ./dist/index.js",
-    "ts": "rimraf dist/ && tsc -w"
+    "build": "rimraf dist/ && tsc"
   },
   "repository": {
     "type": "git",

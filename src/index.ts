@@ -7,6 +7,7 @@ import cors from "cors";
 import config from "./config/config";
 import v1Router from "./routes/v1/v1Router";
 import { cDate, cSystem } from "./libraries/coreSystem";
+import "reflect-metadata";
 
 class App {
   public app: Application;
