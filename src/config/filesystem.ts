@@ -154,10 +154,9 @@ class fileSystem {
         file: Express.Multer.File,
         callback: fileNameCallback
       ): void => {
-        callback(
-          null,
-          md5(Date.now().toString()) + path.extname(file.originalname)
-        );
+        const oriName: string = path.parse(file.originalname).name;
+        const newName: string = oriName + Date.now().toString();
+        callback(null, md5(newName) + path.extname(file.originalname));
       },
     });
   }
@@ -186,10 +185,9 @@ class fileSystem {
         file: Express.Multer.File,
         callback: fileNameCallback
       ): void => {
-        callback(
-          null,
-          md5(Date.now().toString()) + path.extname(file.originalname)
-        );
+        const oriName: string = path.parse(file.originalname).name;
+        const newName: string = oriName + Date.now().toString();
+        callback(null, md5(newName) + path.extname(file.originalname));
       },
     });
   }
