@@ -17,10 +17,14 @@ if (dbUrl != "") {
   dbConfig
     .initialize()
     .then(() => {
-      console.log("DB connected successful");
+      console.log(
+        "\u001b[36m%s\x1b[0m",
+        "[lite-shift]",
+        `DB connected successful`
+      );
     })
     .catch((err: Error) => {
-      console.log("DB connecting error", err);
+      console.log("\u001b[36m%s\x1b[0m", "[lite-shift]", `DB connecting error`);
     });
 }
 

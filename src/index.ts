@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import express, { Application, Request, Response } from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
@@ -7,7 +8,6 @@ import cors from "cors";
 import config from "./config/config";
 import v1Router from "./routes/v1/v1Router";
 import { cDate, cSystem } from "./libraries/coreSystem";
-import "reflect-metadata";
 
 class App {
   public app: Application;
@@ -55,5 +55,10 @@ class App {
 
 const app = new App().app;
 app.listen(config.port(), () => {
-  console.log(`Server running at ${config.baseUrl()}:${config.port()}`);
+  console.clear();
+  console.log(
+    "\u001b[36m%s\x1b[0m",
+    "[lite-shift]",
+    `Server running at ${config.baseUrl()}:${config.port()}`
+  );
 });
