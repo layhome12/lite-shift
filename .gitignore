@@ -1,6 +1,7 @@
 # Ignore commit
 node_modules
 build
+dist
 public/*
 private/*
 .env
